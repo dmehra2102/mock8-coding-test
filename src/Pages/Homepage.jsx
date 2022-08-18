@@ -9,20 +9,20 @@ import { useNavigate } from "react-router";
 
 const Homepage = () => {
       const dispatch = useDispatch();
-      const username = JSON.parse(localStorage.getItem("user_name"));
+	  const Userdetails = JSON.parse(localStorage.getItem("user_details"));
 	  const navigate = useNavigate();
-      const { token } = JSON.parse(localStorage.getItem("user_profile_token"));
-      const Userdetails = JSON.parse(localStorage.getItem("user_details"));
 	  const handleClick = ()=>{
-		navigate("/employees" , {replace:false})
-	  }
-      useEffect(() => {
+		  navigate("/employees" , {replace:false})
+		}
+		useEffect(() => {
+			const username = JSON.parse(localStorage.getItem("user_name"));
+		  const { token } = JSON.parse(localStorage.getItem("user_profile_token"));
+		  console.log(token);
             const params = {
                   username,
                   token,
             };
             dispatch(Profile_request_function(params));
-            console.log(Userdetails);
       }, []);
       return (
             <div>

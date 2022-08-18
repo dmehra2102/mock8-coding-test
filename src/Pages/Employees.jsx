@@ -19,6 +19,11 @@ const Employees = () => {
 		navigate(`/employees/${id}`);
 	  }
 
+	//   Navigate to the edit page
+	  const handleEditProfile = (id)=>{
+		navigate(`/employees/${id}/edit`)
+	  }
+
 	//   Delete the Profile
 	  const handleDelete = (id)=>{
 		dispatch(Data_delete_request_function(id))
@@ -29,7 +34,7 @@ const Employees = () => {
             dispatch(Data_request_function(dispatch));
       }, [empleoyees_list]);
       return (
-            <Box m={"auto"} mt="5vh" border="1px solid red" w={"80vw"}>
+            <Box m={"auto"} mt="5vh" w={"80vw"}>
 				<Flex m="1em 0"><Button onClick={handleNewEmployee}>Add New Employee</Button></Flex>
                   <table>
                         <thead>
@@ -56,7 +61,7 @@ const Employees = () => {
 										<td>{item.salary}</td>
 										<td><Button onClick={()=> handleViewProfile(item.id)}>View</Button></td>
 										<td><Button onClick={()=> handleDelete(item.id)}>Delete</Button></td>
-										<td><Button>Edit</Button></td>
+										<td><Button onClick={()=> handleEditProfile(item.id)}>Edit</Button></td>
 									</tr>
                               })}
                         </tbody>

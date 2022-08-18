@@ -1,9 +1,10 @@
 import { LOGIN_USER_FAILURE, LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, REGISTER_USER_FAILURE, REGISTER_USER_REQUEST, REGISTER_USER_SUCCESS } from "./actionTypes";
 
 const {token,isAuth} = JSON.parse(localStorage.getItem("user_profile_token"))
+console.log(isAuth)
 const init = {
 	isLoading : false,
-	isAuth : false || {isAuth},
+	isAuth : false,
 	success_message : "",
 	isAuthError : false,
 	isAlreadyRegistered : false,
@@ -19,7 +20,7 @@ export const AuthReducer = (state=init , {type,payload})=> {
 		case LOGIN_USER_REQUEST:
 			return {...state ,isLoading : true };
 		case LOGIN_USER_SUCCESS : 
-		    return {...state,isLoading : false,isAuth : {isAuth},token : {token}, error_message : ""};
+		    return {...state,isLoading : false,isAuth : true,token : payload, error_message : ""};
 		case LOGIN_USER_FAILURE:
 			return {...state,isLoading : true,isAuthError : true, error_message : "Invalid login creadentials"};	
 		case REGISTER_USER_REQUEST:
@@ -27,7 +28,9 @@ export const AuthReducer = (state=init , {type,payload})=> {
 		case REGISTER_USER_SUCCESS:
 			return {...state,isLoading : false, success_message : "Registration Success",isAlreadyRegistered : true};
 		case REGISTER_USER_FAILURE:
-			return {...state, isLoading : false,isRegisterationError :true, error_message : "Registration failed, user already exists"}
+			return {...state, isLoading : false,isRegisterationError :true, error_message : "Registration failed, user already exists"};
+		case "USER_LOGOUT":
+			return {...state,isAuth:false,token : null};
 		default:
 			return state;
 	}

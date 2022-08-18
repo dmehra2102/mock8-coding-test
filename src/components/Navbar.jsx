@@ -22,7 +22,9 @@ export default function Navbar() {
 	const dispatch = useDispatch();
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const handleLogout = ()=>{
-		localStorage.setItem("user_profile_token",JSON.stringify({isAuth : false, token : null}));
+		// localStorage.setItem("user_profile_token",JSON.stringify({isAuth : false, token : null}));
+		dispatch({type : "USER_LOGOUT"})
+		console.log("logout");
 	}
 
       return (

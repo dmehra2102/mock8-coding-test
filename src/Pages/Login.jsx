@@ -15,11 +15,12 @@ import {
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import React from "react";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { Login_request_function } from "../Redux/action";
 
 const Login = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 	const [loginInfo, setLoginInfo] = useState({
 		  password: "",
 		  username: "",
@@ -36,6 +37,7 @@ const Login = () => {
 	  e.preventDefault();
 	  if(loginInfo.password!=="" && loginInfo.username!==""){
 		  dispatch(Login_request_function(loginInfo));
+		  navigate("/")
 	  }
 	}
 	return (

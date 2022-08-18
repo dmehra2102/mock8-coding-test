@@ -9,10 +9,10 @@ export const Login_request_function = (params)=>(dispatch)=>{
 	localStorage.setItem("user_name",JSON.stringify(params.username))
 	axios.post("https://masai-api-mocker.herokuapp.com/auth/login",params)
 	.then((res)=> {
-		dispatch({type : LOGIN_USER_SUCCESS})
+		dispatch({type : LOGIN_USER_SUCCESS,payload : res.data.token})
 		localStorage.setItem("user_profile_token",JSON.stringify({token : res.data.token, isAuth : true}))
 	})
-	.then(()=> console.log("login successfull"))
+	.then(()=> console.log(JSON.parse(localStorage.getItem("user_profile_token"))))
 	.catch((error)=> dispatch({type : LOGIN_USER_FAILURE, payload : error.message}))
 }
 
@@ -71,5 +71,15 @@ export const Data_delete_request_function = (id)=>(dispatch)=>{
 export const Post_Request_user = (params)=>(dispatch)=>{
 	axios.post('https://mock8-coding-server.herokuapp.com/api/employees_list',params)
 	.then(()=> Data_request_function(dispatch))
+	.catch((error)=> console.log(error));
+}
+
+// Update user Info netword request.
+export const Update_Request_user = (params,id)=> (dispatch)=> {
+	axios.patch(`https://mock8-coding-server.herokuapp.com/api/employees_list/${id}`,params)
+	.then((res)=> {
+		console.log(res.data);
+		
+	}).then(()=> Data_request_function(dispatch))
 	.catch((error)=> console.log(error));
 }
