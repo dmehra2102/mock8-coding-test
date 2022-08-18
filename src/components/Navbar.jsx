@@ -2,20 +2,13 @@ import { ReactNode } from "react";
 import {
       Box,
       Flex,
-      Avatar,
       HStack,
-      Link,
       IconButton,
-      Button,
-      Menu,
-      MenuButton,
-      MenuList,
-      MenuItem,
-      MenuDivider,
       useDisclosure,
       useColorModeValue,
       Stack,
 } from "@chakra-ui/react";
+import { useSelector,useDispatch } from "react-redux";
 import { Link as RouterLink } from "react-router-dom";
 import { HamburgerIcon, CloseIcon, AddIcon } from "@chakra-ui/icons";
 
@@ -25,8 +18,14 @@ const Links = [
       { name: "Login", url: "/login" },
 ];
 
+
 export default function Navbar() {
-      const { isOpen, onOpen, onClose } = useDisclosure();
+	const {isAuth} = useSelector((state)=> state.AuthReducer);
+	const dispatch = useDispatch();
+	const { isOpen, onOpen, onClose } = useDisclosure();
+	const handleLogout = ()=>{
+		localStorage.setItem("user_profile_token",JSON.stringify({isAuth : false, token : null}));
+	}
 
       return (
             <>
@@ -61,6 +60,7 @@ export default function Navbar() {
                                                       {link.name}
                                                 </RouterLink>
                                           ))}
+										  {isAuth ? <RouterLink onClick={handleLogout} to={"/login"}>Logout</RouterLink> : null}
                                     </HStack>
                               </HStack>
                         </Flex>

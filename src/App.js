@@ -1,6 +1,7 @@
 import { Route , Routes } from 'react-router';
 import './App.css';
 import Navbar from './components/Navbar';
+import Employees from './Pages/Employees';
 import Homepage from './Pages/Homepage';
 import Login from './Pages/Login';
 import PrivateRouter from './Pages/PrivateRouter';
@@ -14,6 +15,7 @@ function App() {
 		<Route path='/' element={<PrivateRouter><Homepage /></PrivateRouter>}></Route>
 		<Route path='/login' element={<Login />}></Route>
 		<Route path='/register' element={<Register />}></Route>
+		<Route path='/employees' element={<Employees />}></Route>
 	  </Routes>
     </div>
   );

@@ -32,3 +32,5 @@ export const Profile_request_function = (params)=>(dispatch)=>{
 	.then((res)=> localStorage.setItem("user_details",JSON.stringify(res.data)))
 	.catch((error)=> console.log(error))
 }
+
+// Data Fetching Request
