@@ -1,4 +1,3 @@
-import { ReactNode } from "react";
 import {
       Box,
       Flex,
@@ -6,16 +5,15 @@ import {
       IconButton,
       useDisclosure,
       useColorModeValue,
-      Stack,
 } from "@chakra-ui/react";
 import { useSelector,useDispatch } from "react-redux";
 import { Link as RouterLink } from "react-router-dom";
 import { HamburgerIcon, CloseIcon, AddIcon } from "@chakra-ui/icons";
 
 const Links = [
-      { name: "Home", url: "/" },
-      { name: "Register", url: "/register" },
-      { name: "Login", url: "/login" },
+      { name: "Home", url: "/" ,key:"20099238"},
+      { name: "Register", url: "/register",key:"209211238" },
+      { name: "Login", url: "/login", key:"39482238" },
 ];
 
 
@@ -30,6 +28,7 @@ export default function Navbar() {
       return (
             <>
                   <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
+					
                         <Flex
                               h={16}
                               alignItems={"center"}
@@ -56,7 +55,7 @@ export default function Navbar() {
                                           display={{ base: "none", md: "flex" }}
                                     >
                                           {Links.map((link) => (
-                                                <RouterLink to={link.url}>
+                                                <RouterLink key={link.key} to={link.url}>
                                                       {link.name}
                                                 </RouterLink>
                                           ))}

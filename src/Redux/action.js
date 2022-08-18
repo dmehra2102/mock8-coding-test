@@ -34,3 +34,22 @@ export const Profile_request_function = (params)=>(dispatch)=>{
 }
 
 // Data Fetching Request
+export const Data_request_function = ()=>(dispatch)=>{
+	dispatch({type : "DATA_REQUEST"});
+	axios.get("https://mock8-coding-server.herokuapp.com/api/employees_list")
+	.then((res)=> {
+		dispatch({type : "DATA_REQUEST_SUCCESS",payload : res.data})
+	})
+	.catch((error)=> dispatch({type :"DATA_REQUEST_FAILURE"}));
+}
+
+// Delete user Profile function
+export const Data_delete_request_function = (id)=>(dispatch)=>{
+	
+	axios.delete(`https://mock8-coding-server.herokuapp.com/api/employees_list/${id}`)
+	.then((res)=> {
+		console.log(res.data);
+		
+	}).then(()=> Data_request_function(dispatch))
+	.catch((error)=> console.log(error));
+}

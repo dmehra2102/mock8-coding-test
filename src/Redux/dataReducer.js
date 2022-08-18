@@ -4,8 +4,8 @@ const init = {
 	isError : false,
 }
 
-export const DataReducer = (state=init,{payload,type})=>{
-switch (key) {
+export const DataReducer = (state=init,{type,payload})=>{
+switch (type) {
 	case "DATA_REQUEST":
 		return {...state,isLoading:true};		
 	case "DATA_REQUEST_SUCCESS":
