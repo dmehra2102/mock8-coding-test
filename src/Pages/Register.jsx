@@ -23,7 +23,6 @@ import { Register_request_function } from '../Redux/action';
   
 const Register = ()=> {
 	const dispatch  = useDispatch();
-	// const {isAlreadyRegistered} = useSelector((state)=> state.AuthReducer);
 	const [showPassword, setShowPassword] = useState(false);
 	const [registerInfo,setRegisterInfo] = useState({
 		name : "",

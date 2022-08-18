@@ -24,15 +24,11 @@ export const Register_request_function = (params)=>(dispatch)=>{
 }
 
 // Profile request Function
-export const Profile_request_function = (params)=> async (dispatch)=>{
+export const Profile_request_function = (params)=>(dispatch)=>{
 	dispatch({type : PROFILE_USER_REQUEST});
-	console.log(params.token,params.username);
-	// axios.post(`https://masai-api-mocker.herokuapp.com/user/${params.username}`,{
-	// 	headers : { "Authorization" : `Bearer ${params.token}`}
-	// })
-	await axios.post(`https://masai-api-mocker.herokuapp.com/user/${params.username}`,{
+	axios.get(`https://masai-api-mocker.herokuapp.com/user/${params.username}`,{
 		headers : { "Authorization" : `Bearer ${params.token}`}
 	})
-	.then((res)=> console.log(res.data))
+	.then((res)=> localStorage.setItem("user_details",JSON.stringify(res.data)))
 	.catch((error)=> console.log(error))
 }

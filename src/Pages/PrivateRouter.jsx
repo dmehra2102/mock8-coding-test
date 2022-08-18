@@ -4,7 +4,6 @@ import { Navigate } from 'react-router-dom';
 
 const PrivateRouter = ({children}) => {
   const {isAuth} = useSelector((state)=> state.AuthReducer);
-console.log(isAuth)
   if(isAuth){
 	return children
   }
