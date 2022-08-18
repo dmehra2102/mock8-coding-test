@@ -1,6 +1,8 @@
 import axios from "axios";
 import { LOGIN_USER_FAILURE, LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, PROFILE_USER_REQUEST, REGISTER_USER_FAILURE, REGISTER_USER_REQUEST, REGISTER_USER_SUCCESS } from "./actionTypes";
 
+
+
 // Login Request Function
 export const Login_request_function = (params)=>(dispatch)=>{
 	dispatch({type : LOGIN_USER_REQUEST});
@@ -14,6 +16,8 @@ export const Login_request_function = (params)=>(dispatch)=>{
 	.catch((error)=> dispatch({type : LOGIN_USER_FAILURE, payload : error.message}))
 }
 
+
+
 // Register Request Function
 export const Register_request_function = (params)=>(dispatch)=>{
 	dispatch({type : REGISTER_USER_REQUEST});
@@ -22,6 +26,8 @@ export const Register_request_function = (params)=>(dispatch)=>{
 	.then(()=> console.log("Registration successfull"))
 	.catch((error)=> dispatch({type : REGISTER_USER_FAILURE, payload : error.message}))
 }
+
+
 
 // Profile request Function
 export const Profile_request_function = (params)=>(dispatch)=>{
@@ -33,6 +39,9 @@ export const Profile_request_function = (params)=>(dispatch)=>{
 	.catch((error)=> console.log(error))
 }
 
+
+
+
 // Data Fetching Request
 export const Data_request_function = ()=>(dispatch)=>{
 	dispatch({type : "DATA_REQUEST"});
@@ -43,6 +52,8 @@ export const Data_request_function = ()=>(dispatch)=>{
 	.catch((error)=> dispatch({type :"DATA_REQUEST_FAILURE"}));
 }
 
+
+
 // Delete user Profile function
 export const Data_delete_request_function = (id)=>(dispatch)=>{
 	
@@ -51,5 +62,14 @@ export const Data_delete_request_function = (id)=>(dispatch)=>{
 		console.log(res.data);
 		
 	}).then(()=> Data_request_function(dispatch))
+	.catch((error)=> console.log(error));
+}
+
+
+// Making Post request for new User Data 
+
+export const Post_Request_user = (params)=>(dispatch)=>{
+	axios.post('https://mock8-coding-server.herokuapp.com/api/employees_list',params)
+	.then(()=> Data_request_function(dispatch))
 	.catch((error)=> console.log(error));
 }
